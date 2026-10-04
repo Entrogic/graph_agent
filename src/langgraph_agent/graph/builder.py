@@ -3,6 +3,7 @@ from langgraph.graph import StateGraph, START, END
 from langgraph_agent import graph
 from .state import AgentState
 from .nodes import assistant_agent
+from langgraph.checkpoint.memory import InMemorySaver
 
 
 def build_graph():
@@ -14,4 +15,4 @@ def build_graph():
     graph.add_edge(START, "assistant")
     graph.add_edge("assistant", END)
 
-    return graph.compile()
+    return graph.compile(checkpointer=InMemorySaver())

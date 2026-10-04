@@ -4,8 +4,10 @@ from ..llm.model import get_model
 model = get_model()
 
 
-def assistant_agent(state: AgentState) -> AgentState:
+def assistant_agent(state: AgentState):
 
-    response = model.invoke(state["message"])
+    response = model.invoke(state["messages"])
 
-    return {"message": state["message"], "response": response}
+    return {
+        "messages": [response]
+    }
